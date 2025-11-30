@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+#task-form {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+#taskList {
+    list-style: none;
+    padding: 0;
+}
+
+#taskList li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    border-left: 5px solid #ccc; /* Default border color */
+    background: #f9f9f9;
+}
+
+/* Priority Styling (from dataManager.js) */
+.high {
+    border-left-color: red !important;
+}
+.medium {
+    border-left-color: orange !important;
+}
+.low {
+    border-left-color: green !important;
+}
+
+/* Completion Styling */
+.completed {
+    background-color: #e0f7e0;
+    opacity: 0.6;
+    text-decoration: line-through;
+}
+
+#taskList li button {
+    margin-left: 10px;
+    padding: 5px 10px;
+}
