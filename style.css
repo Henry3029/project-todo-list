@@ -1,49 +1,35 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
+/* This file provides custom styles and priority color coding 
+that can't easily be done with Tailwind classes alone.
+*/
+
+/* --- Project Navigation --- */
+.project-item.active {
+    background-color: #e0e7ff; /* Light indigo background */
+    color: #4338ca; /* Darker indigo text */
+    font-weight: bold;
 }
 
-#task-form {
-    margin-bottom: 20px;
-    display: flex;
-    gap: 10px;
-}
-
-#taskList {
-    list-style: none;
-    padding: 0;
-}
-
+/* --- Todo List Styling --- */
 #taskList li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    margin-bottom: 8px;
-    border-radius: 4px;
-    border-left: 5px solid #ccc; /* Default border color */
-    background: #f9f9f9;
+    /* Base style defined in JS via Tailwind */
+    border-left: 5px solid transparent; 
+    transition: all 0.2s ease-in-out;
 }
 
-/* Priority Styling (from dataManager.js) */
+/* Priority Classes (Used by li.classList.add(task.priority)) */
 .high {
-    border-left-color: red !important;
+    border-left-color: #ef4444 !important; /* Tailwind red-500 */
 }
 .medium {
-    border-left-color: orange !important;
+    border-left-color: #f59e0b !important; /* Tailwind amber-500 */
 }
 .low {
-    border-left-color: green !important;
+    border-left-color: #10b981 !important; /* Tailwind emerald-500 */
 }
 
-/* Completion Styling */
+/* Completion State */
 .completed {
-    background-color: #e0f7e0;
-    opacity: 0.6;
+    background-color: #f3f4f6; /* Light gray background */
+    opacity: 0.7;
     text-decoration: line-through;
-}
-
-#taskList li button {
-    margin-left: 10px;
-    padding: 5px 10px;
 }

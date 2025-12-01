@@ -3,20 +3,97 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ToDo List</title>
+    <title>Modular Todo List</title>
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Ensures the project list buttons wrap correctly on mobile */
+        #project-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px; /* Spacing between wrapped buttons */
+        }
+        @media (min-width: 768px) {
+            /* On medium screens (desktop), switch back to vertical stacking */
+            #project-nav {
+                display: block;
+                gap: 0;
+            }
+        }
+    </style>
 </head>
-<body>
+<body class="bg-gray-100 min-h-screen">
 
-    <form id="task-form">
-        <input id="task-input" type="text" placeholder="Add a new task...">
+    <!-- Main Container: Stacks on mobile (block) and uses sidebar on desktop (md:flex) -->
+    <div class="block md:flex max-w-6xl mx-auto shadow-xl md:rounded-xl mt-4 md:mt-10 bg-white min-h-[90vh]">
         
-        <button type="submit">Add Task</button>
-    </form>
+        <!-- LEFT PANEL: Project Navigation -->
+        <aside class="w-full md:w-1/4 p-4 md:p-6 bg-gray-50 md:border-r border-b md:border-b-0 border-gray-200 md:rounded-l-xl">
+            <h2 class="text-xl font-bold mb-4 text-indigo-700">Projects</h2>
+            
+            <!-- Project List Container -->
+            <nav id="project-nav" class="md:space-y-2"></nav>
 
-    <ul id="taskList">
-        </ul>
+            <!-- New Project Form -->
+            <form id="new-project-form" class="mt-4 md:mt-8 flex gap-2">
+                <input id="new-project-input" type="text" placeholder="New Project" 
+                       class="flex-grow p-2 border border-gray-300 rounded-md text-sm">
+                <button type="submit" class="bg-indigo-500 text-white p-2 rounded-md hover:bg-indigo-600 transition duration-150">
+                    +
+                </button>
+            </form>
+        </aside>
+
+        <!-- RIGHT PANEL: Todo List -->
+        <main class="w-full md:w-3/4 p-4 md:p-8">
+            <h1 id="current-project-title" class="text-2xl font-extrabold mb-4 text-gray-800">Default</h1>
+            
+            <!-- ADD TASK FORM: Restructured for Date and Priority inputs -->
+            <form id="task-form" class="mb-6 p-4 border border-indigo-200 rounded-lg bg-indigo-50">
+                <!-- Row 1: Title Input -->
+                <input id="task-input" type="text" placeholder="Task Title (e.g., Finish Project Report)" 
+                       class="w-full p-3 border-2 border-indigo-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 mb-3">
+                
+                <!-- Row 2: Date, Priority, and Add Button -->
+                <div class="flex flex-col sm:flex-row gap-3 items-stretch">
+                    
+                    <!-- Due Date -->
+                    <div class="flex-1">
+                        <label for="task-due-date" class="block text-xs text-gray-600 mb-1">Due Date</label>
+                        <input id="task-due-date" type="date" 
+                               class="w-full p-2 border border-gray-300 rounded-lg">
+                    </div>
+
+                    <!-- Priority -->
+                    <div class="flex-1">
+                        <label for="task-priority" class="block text-xs text-gray-600 mb-1">Priority</label>
+                        <select id="task-priority" class="w-full p-2 border border-gray-300 rounded-lg">
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+
+                    <!-- Add Button -->
+                    <div class="sm:self-end">
+                        <button type="submit" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold w-full sm:w-auto py-2.5 px-4 rounded-lg transition duration-150 text-sm md:text-base">
+                            Add Task
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+            
+            <!-- Todo List Container -->
+            <ul id="taskList">
+                <!-- Tasks will be rendered here by JavaScript -->
+            </ul>
+        </main>
+
+    </div>
     
     <script src="./src/index.js" type="module"></script>
 </body>
 </html>
+

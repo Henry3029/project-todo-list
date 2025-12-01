@@ -8,9 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Load data from storage
     DataManager.loadFromStorage();
     
-    // 2. Set up event listeners (like the form submission)
+    // 2. Set up event listeners (which now includes renderProjects)
     DOMManager.initEventListeners();
     
     // 3. Render the initial view (the Default project)
-    DOMManager.renderTodos(DataManager.projects['Default'], 'Default');
+    // We get the array for 'Default' from the data manager
+    DOMManager.renderTodos(DataManager.projects[DataManager.currentProject], DataManager.currentProject);
 });
